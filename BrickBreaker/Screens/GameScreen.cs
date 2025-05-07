@@ -24,9 +24,12 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown;
 
         // Game values
+        Random Randgen = new Random();
         public static int lives;
         public static int SlimeNum;
         int count;
+        int powerupchance;
+        int poweruptype;
         int level;
 
         // Paddle and Ball objects
@@ -49,8 +52,6 @@ namespace BrickBreaker
             OnStart();
         }
 
-        
-
         public void OnStart()
         {
             //set life counter
@@ -58,7 +59,7 @@ namespace BrickBreaker
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
-
+            
             // setup starting paddle values and create paddle object
             int paddleWidth = 80;
             int paddleHeight = 20;
@@ -81,24 +82,24 @@ namespace BrickBreaker
 
             //TODO - replace all the code in this region eventually with code that loads levels from xml files
 
-           // if (blocks == null)
+            // if (blocks == null)
             //{
-                //ExtractLevel(1);
-               
-               // level++;
-           // }
+            //ExtractLevel(1);
+
+            // level++;
+            // }
 
 
 
-            //blocks.Clear();
-            //int x = 10;
+            blocks.Clear();
+            int x = 10;
 
-            //while (blocks.Count < 12)
-            //{
-            //    x += 57;
-            //    Block b1 = new Block(x, 10, 1, Color.White);
-            //    blocks.Add(b1);
-            //}
+            while (blocks.Count < 12)
+            {
+                x += 57;
+                Block b1 = new Block(x, 10, 1, "White");
+                blocks.Add(b1);
+            }
 
             #endregion
 
@@ -152,7 +153,7 @@ namespace BrickBreaker
             {
                 paddle.Move("right");
             }
-
+            
             // Move ball
             ball.Move();
 
@@ -167,6 +168,7 @@ namespace BrickBreaker
                 // Moves the ball back to origin
                 ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
                 ball.y = (this.Height - paddle.height) - 85;
+
 
                 if (lives == 0)
                 {
@@ -189,6 +191,13 @@ namespace BrickBreaker
                     {
                         gameTimer.Enabled = false;
                         OnEnd();
+                    }
+
+                    powerupchance = Randgen.Next(0, 101);
+
+                    if (powerupchance <= 20)
+                    {
+
                     }
 
                     break;
@@ -256,7 +265,6 @@ namespace BrickBreaker
             // Draws blocks
             foreach (Block b in blocks)
             {
-
                 e.Graphics.FillRectangle(redBrush, b.x, b.y, b.width, b.height);
             }
 
@@ -264,10 +272,27 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(whiteBrush, ball.x, ball.y, ball.size, ball.size);
 
             //Draws hearts
+
             Rectangle heartBox1 = new Rectangle(25, 25, 50, 50);
             Rectangle heartBox2 = new Rectangle(25 + 50 + 25, 25, 50, 50);
-            e.Graphics.FillRectangle(whiteBrush, heartBox1);
-            e.Graphics.FillRectangle(whiteBrush, heartBox2);
+            Rectangle heartBox3 = new Rectangle(25 + 50 + 25 + 50 + 25, 25, 50, 50);
+
+            switch (lives)
+            {
+                case 3:
+                    e.Graphics.FillRectangle(whiteBrush, heartBox1);
+                    e.Graphics.FillRectangle(whiteBrush, heartBox2);
+                    e.Graphics.FillRectangle(whiteBrush, heartBox3);
+                    break;
+                case 2:
+                    e.Graphics.FillRectangle(whiteBrush, heartBox1);
+                    e.Graphics.FillRectangle(whiteBrush, heartBox2);
+                    break;
+                case 1:
+                    e.Graphics.FillRectangle(whiteBrush, heartBox1);
+                    break;
+
+            }
         }
     }
 }

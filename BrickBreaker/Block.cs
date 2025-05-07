@@ -13,7 +13,7 @@ namespace BrickBreaker
     {
         public int width = 60;
         public int height = 60;
-
+          
         public int x;
         public int y; 
         public int hp;

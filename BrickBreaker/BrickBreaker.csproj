@@ -136,17 +136,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\heartIcon.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\heartIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\emptyHeartIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="level1.xml" />
     <Content Include="level2.xml" />
+    <None Include="Resources\heartIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\emptyHeartIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="level3.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
