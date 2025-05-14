@@ -30,7 +30,7 @@ namespace BrickBreaker
         int count;
         int powerupchance;
         int poweruptype;
-        int level;
+        int level = 1;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -43,6 +43,11 @@ namespace BrickBreaker
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush blackBrush = new SolidBrush(Color.Black);
         SolidBrush redBrush = new SolidBrush(Color.Red);
+
+
+        public Rectangle heartBox1 = new Rectangle(0, 575, 50, 50);
+        public Rectangle heartBox2 = new Rectangle(0, 650, 50, 50);
+        public Rectangle heartBox3 = new Rectangle(0, 725, 50, 50);
 
         #endregion
 
@@ -61,7 +66,7 @@ namespace BrickBreaker
             leftArrowDown = rightArrowDown = false;
             
             // setup starting paddle values and create paddle object
-            int paddleWidth = 80;
+            int paddleWidth = 150;
             int paddleHeight = 20;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 20;
@@ -80,26 +85,23 @@ namespace BrickBreaker
 
             #region Creates blocks for generic level. Need to replace with code that loads levels.
 
+
             //TODO - replace all the code in this region eventually with code that loads levels from xml files
 
-            // if (blocks == null)
+            ExtractLevel();
+
+
+
+
+            //blocks.Clear();
+            //int x = 10;
+
+            //while (blocks.Count < 12)
             //{
-            //ExtractLevel(1);
-
-            // level++;
-            // }
-
-
-
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12)
-            {
-                x += 57;
-                Block b1 = new Block(x, 10, 1, "White");
-                blocks.Add(b1);
-            }
+            //    x += 57;
+            //    Block b1 = new Block(x, 10, 1, "White");
+            //    blocks.Add(b1);
+            //}
 
             #endregion
 
@@ -158,7 +160,7 @@ namespace BrickBreaker
             ball.Move();
 
             // Check for collision with top and side walls
-            ball.WallCollision(this);
+           ball.WallCollision(this);
 
             // Check for ball hitting bottom of screen
             if (ball.BottomCollision(this))
@@ -185,12 +187,27 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
-                    blocks.Remove(b);
+                    b.hp--;
+                    Block.BlockBreaking(b);
+
+                    if (b.hp == 0)
+                    {
+                        blocks.Remove(b);
+                    }
 
                     if (blocks.Count == 0)
                     {
-                        gameTimer.Enabled = false;
-                        OnEnd();
+                        level++;
+
+                        if(level == 7)
+                        {
+                            gameTimer.Stop();
+                            OnEnd();
+                        }
+                        else if (level < 7)
+                        {
+                            ExtractLevel();
+                        }
                     }
 
                     powerupchance = Randgen.Next(0, 101);
@@ -199,7 +216,6 @@ namespace BrickBreaker
                     {
 
                     }
-
                     break;
                 }
             }
@@ -226,9 +242,9 @@ namespace BrickBreaker
             form.Controls.Remove(this);
         }
 
-        public void ExtractLevel(int level)
+        public void ExtractLevel()
         {
-            XmlReader reader = XmlReader.Create($"level{level}.xml");
+            XmlReader reader = XmlReader.Create($"Resources/level{level}.xml");
 
             while (reader.Read())
             {
@@ -256,6 +272,24 @@ namespace BrickBreaker
             }
         }
 
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            blocks.Clear();
+
+            level++;
+
+            if (level == 7)
+            {
+                gameTimer.Enabled = false;
+                OnEnd();
+            }
+            else if (level < 7)
+            {
+                ExtractLevel();
+            }
+        }
+
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // Draws paddle
@@ -265,7 +299,8 @@ namespace BrickBreaker
             // Draws blocks
             foreach (Block b in blocks)
             {
-                e.Graphics.FillRectangle(redBrush, b.x, b.y, b.width, b.height);
+                e.Graphics.DrawImage(b.blockImage, b.x, b.y, b.width, b.height);
+                e.Graphics.DrawImage(b.durabilityImage, b.x, b.y, b.width, b.height);
             }
 
             // Draws ball
@@ -273,26 +308,26 @@ namespace BrickBreaker
 
             //Draws hearts
 
-            Rectangle heartBox1 = new Rectangle(25, 25, 50, 50);
-            Rectangle heartBox2 = new Rectangle(25 + 50 + 25, 25, 50, 50);
-            Rectangle heartBox3 = new Rectangle(25 + 50 + 25 + 50 + 25, 25, 50, 50);
-
-            switch (lives)
-            {
-                case 3:
-                    e.Graphics.FillRectangle(whiteBrush, heartBox1);
-                    e.Graphics.FillRectangle(whiteBrush, heartBox2);
-                    e.Graphics.FillRectangle(whiteBrush, heartBox3);
-                    break;
-                case 2:
-                    e.Graphics.FillRectangle(whiteBrush, heartBox1);
-                    e.Graphics.FillRectangle(whiteBrush, heartBox2);
-                    break;
-                case 1:
-                    e.Graphics.FillRectangle(whiteBrush, heartBox1);
-                    break;
-
-            }
+           
+            //switch (lives)
+            //{
+            //    case 3:
+            //        ///e.Graphics.FillRectangle(whiteBrush, heartBox1);
+            //        e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
+            //        e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox2);
+            //        e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox3);
+            //        break;
+            //    case 2:
+            //        e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
+            //        e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox2);
+            //        e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
+            //        break;
+            //    case 1:
+            //        e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
+            //        e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox2);
+            //        e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
+            //        break;
+            //}
         }
     }
 }
