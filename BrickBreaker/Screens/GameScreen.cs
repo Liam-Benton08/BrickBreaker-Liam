@@ -61,7 +61,7 @@ namespace BrickBreaker
             leftArrowDown = rightArrowDown = false;
             
             // setup starting paddle values and create paddle object
-            int paddleWidth = 80;
+            int paddleWidth = 150;
             int paddleHeight = 20;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 20;
