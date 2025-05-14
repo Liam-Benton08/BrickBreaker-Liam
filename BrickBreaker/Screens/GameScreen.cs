@@ -45,9 +45,9 @@ namespace BrickBreaker
         SolidBrush redBrush = new SolidBrush(Color.Red);
 
 
-        public Rectangle heartBox1 = new Rectangle(0, 400, 50, 50);
-        public Rectangle heartBox2 = new Rectangle(0, 400, 50, 50);
-        public Rectangle heartBox3 = new Rectangle(0, 475, 50, 50);
+        public Rectangle heartBox1 = new Rectangle(0, 575, 50, 50);
+        public Rectangle heartBox2 = new Rectangle(0, 650, 50, 50);
+        public Rectangle heartBox3 = new Rectangle(0, 725, 50, 50);
 
         #endregion
 
