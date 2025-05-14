@@ -154,7 +154,7 @@ namespace BrickBreaker
             ball.Move();
 
             // Check for collision with top and side walls
-            ball.WallCollision(this);
+           ball.WallCollision(this);
 
             // Check for ball hitting bottom of screen
             if (ball.BottomCollision(this))
@@ -210,7 +210,6 @@ namespace BrickBreaker
                     {
 
                     }
-
                     break;
                 }
             }
@@ -303,23 +302,27 @@ namespace BrickBreaker
 
             //Draws hearts
 
-            Rectangle heartBox1 = new Rectangle(25, 25, 50, 50);
-            Rectangle heartBox2 = new Rectangle(25 + 50 + 25, 25, 50, 50);
-            Rectangle heartBox3 = new Rectangle(25 + 50 + 25 + 50 + 25, 25, 50, 50);
+            Rectangle heartBox1 = new Rectangle(0, 400, 50, 50);
+            Rectangle heartBox2 = new Rectangle(0, 400, 50, 50);
+            Rectangle heartBox3 = new Rectangle(0, 475, 50, 50);
 
             switch (lives)
             {
                 case 3:
-                    e.Graphics.FillRectangle(whiteBrush, heartBox1);
-                    e.Graphics.FillRectangle(whiteBrush, heartBox2);
-                    e.Graphics.FillRectangle(whiteBrush, heartBox3);
+                    ///e.Graphics.FillRectangle(whiteBrush, heartBox1);
+                    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
+                    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox2);
+                    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox3);
                     break;
                 case 2:
-                    e.Graphics.FillRectangle(whiteBrush, heartBox1);
-                    e.Graphics.FillRectangle(whiteBrush, heartBox2);
+                    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
+                    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox2);
+                    e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
                     break;
                 case 1:
-                    e.Graphics.FillRectangle(whiteBrush, heartBox1);
+                    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
+                    e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox2);
+                    e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
                     break;
 
             }
