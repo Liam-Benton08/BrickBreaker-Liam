@@ -52,6 +52,10 @@ namespace BrickBreaker
             OnStart();
         }
 
+        Rectangle heartBox1 = new Rectangle(0, 575, 50, 50);
+        Rectangle heartBox2 = new Rectangle(0, 650, 50, 50);
+        Rectangle heartBox3 = new Rectangle(0, 725, 50, 50);
+
         public void OnStart()
         {
             //set life counter
@@ -272,14 +276,9 @@ namespace BrickBreaker
 
             //Draws hearts
 
-            Rectangle heartBox1 = new Rectangle(0, 400, 50, 50);
-            Rectangle heartBox2 = new Rectangle(0, 400, 50, 50);
-            Rectangle heartBox3 = new Rectangle(0, 475, 50, 50);
-
             switch (lives)
             {
                 case 3:
-                    ///e.Graphics.FillRectangle(whiteBrush, heartBox1);
                     e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
                     e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox2);
                     e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox3);
@@ -294,7 +293,6 @@ namespace BrickBreaker
                     e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox2);
                     e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
                     break;
-
             }
         }
     }
