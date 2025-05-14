@@ -62,12 +62,12 @@ namespace BrickBreaker
 
                 if (ballCentre < p.x + pSectionWidth) //hit left side
                 {
-                    xSpeed = 5;
+                    xSpeed = 4;
                     xSpeed *= -1;
                 }
                 else if (ballCentre > p.x + pSectionWidth * 2) //hit right side
                 {
-                    xSpeed = 5;
+                    xSpeed = 4;
                     xSpeed *= -1;
                 }
                 else //middle
@@ -122,6 +122,8 @@ namespace BrickBreaker
             if (y >= UC.Height)
             {
                 didCollide = true;
+
+                ySpeed = -ySpeed;
             }
 
             return didCollide;
