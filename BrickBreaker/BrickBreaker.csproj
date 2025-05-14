@@ -136,15 +136,44 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="level1.xml" />
-    <Content Include="level2.xml" />
+    <None Include="Resources\stoneBlock-1.png %284%29.png" />
+    <None Include="Resources\stoneBlock-1.png %283%29.png" />
+    <None Include="Resources\stoneBlock-1.png %282%29.png" />
+    <None Include="Resources\stoneBlock-1.png %281%29.png" />
+    <None Include="Resources\stoneBlock-1.png.png" />
+    <None Include="Resources\netheriteBlock.jpg" />
+    <None Include="Resources\netherackBlock.jpg" />
+    <None Include="Resources\obsidianBlock.jpg" />
+    <None Include="Resources\stoneBlock.jpg" />
+    <None Include="Resources\dirtBlock.png" />
+    <None Include="Resources\ironBlock.jpg" />
+    <None Include="Resources\diamondBlock.jpg" />
+    <Content Include="Resources\level6.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\endstoneBlock.jpg" />
+    <None Include="Resources\dragonBlock.jpg" />
+    <Content Include="Resources\level5.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\level4.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\level1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\level2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\heartIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\emptyHeartIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="level3.xml" />
+    <Content Include="Resources\level3.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

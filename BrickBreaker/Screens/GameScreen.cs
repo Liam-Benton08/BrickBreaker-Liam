@@ -30,7 +30,7 @@ namespace BrickBreaker
         int count;
         int powerupchance;
         int poweruptype;
-        int level;
+        int level = 1;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -82,24 +82,20 @@ namespace BrickBreaker
 
             //TODO - replace all the code in this region eventually with code that loads levels from xml files
 
-            // if (blocks == null)
+            ExtractLevel();
+
+
+
+
+            //blocks.Clear();
+            //int x = 10;
+
+            //while (blocks.Count < 12)
             //{
-            //ExtractLevel(1);
-
-            // level++;
-            // }
-
-
-
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12)
-            {
-                x += 57;
-                Block b1 = new Block(x, 10, 1, "White");
-                blocks.Add(b1);
-            }
+            //    x += 57;
+            //    Block b1 = new Block(x, 10, 1, "White");
+            //    blocks.Add(b1);
+            //}
 
             #endregion
 
@@ -185,12 +181,27 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
-                    blocks.Remove(b);
+                    b.hp--;
+                    Block.BlockBreaking(b);
+
+                    if (b.hp == 0)
+                    {
+                        blocks.Remove(b);
+                    }
 
                     if (blocks.Count == 0)
                     {
-                        gameTimer.Enabled = false;
-                        OnEnd();
+                        level++;
+
+                        if(level == 7)
+                        {
+                            gameTimer.Stop();
+                            OnEnd();
+                        }
+                        else if (level < 7)
+                        {
+                            ExtractLevel();
+                        }
                     }
 
                     powerupchance = Randgen.Next(0, 101);
@@ -226,9 +237,9 @@ namespace BrickBreaker
             form.Controls.Remove(this);
         }
 
-        public void ExtractLevel(int level)
+        public void ExtractLevel()
         {
-            XmlReader reader = XmlReader.Create($"level{level}.xml");
+            XmlReader reader = XmlReader.Create($"Resources/level{level}.xml");
 
             while (reader.Read())
             {
@@ -256,6 +267,24 @@ namespace BrickBreaker
             }
         }
 
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            blocks.Clear();
+
+            level++;
+
+            if (level == 7)
+            {
+                gameTimer.Enabled = false;
+                OnEnd();
+            }
+            else if (level < 7)
+            {
+                ExtractLevel();
+            }
+        }
+
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // Draws paddle
@@ -265,7 +294,8 @@ namespace BrickBreaker
             // Draws blocks
             foreach (Block b in blocks)
             {
-                e.Graphics.FillRectangle(redBrush, b.x, b.y, b.width, b.height);
+                e.Graphics.DrawImage(b.blockImage, b.x, b.y, b.width, b.height);
+                e.Graphics.DrawImage(b.durabilityImage, b.x, b.y, b.width, b.height);
             }
 
             // Draws ball
