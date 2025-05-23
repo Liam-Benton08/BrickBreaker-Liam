@@ -5,14 +5,15 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Media;
 using System.Xml;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace BrickBreaker
 {
@@ -33,11 +34,14 @@ namespace BrickBreaker
         int level = 1;
 
         // Paddle and Ball objects
-        Paddle paddle;
+        public static Paddle paddle;
         Ball ball;
 
         // list of all blocks for current level
         public List<Block> blocks = new List<Block>();
+
+        // list of powerup balls that has a chance to spawn when a block is hit
+        public static List<Ball> powerupballs = new List<Ball>();
 
         // Brushes
         SolidBrush whiteBrush = new SolidBrush(Color.White);
@@ -239,10 +243,66 @@ namespace BrickBreaker
 
                     powerupchance = Randgen.Next(0, 101);
 
-                    if (powerupchance <= 20)
+                    if (powerupchance <= 75)
                     {
-
+                        Ball pub = new Ball(b.x+20, b.y, 0, 200, 20);
+                        powerupballs.Add(pub);
                     }
+                    break;
+                }
+            }
+
+            // makes the powerup ball fall and checks if the powerup ball has been hit yet, if it has then it chooses a random powerup
+            foreach (Ball pub in powerupballs)
+            {
+                pub.y++;
+
+                if (pub.LuckCollision(paddle))
+                {
+                    int powerupselect = Randgen.Next(1, 11);
+
+                    if (powerupselect == 1)
+                    {
+                        Powerups.Speed_I(paddle);
+                    }
+                    else if (powerupselect == 2)
+                    {
+                        Powerups.Speed_II(paddle);
+                    }
+                    else if (powerupselect == 3)
+                    {
+                        Powerups.Speed_III(paddle);
+                    }
+                    else if (powerupselect == 4)
+                    {
+                        Powerups.Golden_Carrot();
+                    }
+                    else if (powerupselect == 5)
+                    {
+                        Powerups.Golden_Apple();
+                    }
+                    else if (powerupselect == 6)
+                    {
+                        Powerups.Slime();
+                    }
+                    else if (powerupselect == 7)
+                    {
+                        Powerups.stonetool();
+                    }
+                    else if (powerupselect == 8)
+                    {
+                        Powerups.irontool();
+                    }
+                    else if (powerupselect == 9)
+                    {
+                        Powerups.diamondtool();
+                    }
+                    else if (powerupselect == 10)
+                    {
+                        Powerups.netheritetool();
+                    }
+
+                    powerupballs.Remove(pub);
                     break;
                 }
             }
@@ -328,6 +388,18 @@ namespace BrickBreaker
             {
                 e.Graphics.DrawImage(b.blockImage, b.x, b.y, b.width, b.height);
                 e.Graphics.DrawImage(b.durabilityImage, b.x, b.y, b.width, b.height);
+            }
+
+            // Draws power up balls
+            foreach (Ball pub in powerupballs)
+            {
+                e.Graphics.FillRectangle(redBrush, pub.x, pub.y, pub.size, pub.size);
+            }
+
+            // Draws extra balls from power up
+            foreach (Ball eb in Powerups.extraballs)
+            {
+                e.Graphics.FillRectangle(whiteBrush, eb.x, eb.y, eb.size, eb.size);
             }
 
             // Draws ball
