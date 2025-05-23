@@ -49,6 +49,8 @@ namespace BrickBreaker
         public Rectangle heartBox2 = new Rectangle(0, 650, 50, 50);
         public Rectangle heartBox3 = new Rectangle(0, 725, 50, 50);
 
+        Image background;
+
         #endregion
 
         public GameScreen()
@@ -89,6 +91,31 @@ namespace BrickBreaker
             //TODO - replace all the code in this region eventually with code that loads levels from xml files
 
             ExtractLevel();
+
+            if (level == 1)
+            {
+               // background = new Image(Properties.Resources.);
+            }
+            else if(level == 2) 
+            {
+               // background = new Image(Properties.Resources.);
+            }
+            else if (level == 3)
+            {
+                // background = new Image(Properties.Resources.);
+            }
+            else if (level == 4)
+            {
+                // background = new Image(Properties.Resources.);
+            }
+            else if (level == 5)
+            {
+                // background = new Image(Properties.Resources.);
+            }
+            else if (level == 6)
+            {
+                // background = new Image(Properties.Resources.);
+            }
 
 
 
@@ -308,26 +335,26 @@ namespace BrickBreaker
 
             //Draws hearts
 
-           
-            //switch (lives)
-            //{
-            //    case 3:
-            //        ///e.Graphics.FillRectangle(whiteBrush, heartBox1);
-            //        e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
-            //        e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox2);
-            //        e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox3);
-            //        break;
-            //    case 2:
-            //        e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
-            //        e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox2);
-            //        e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
-            //        break;
-            //    case 1:
-            //        e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
-            //        e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox2);
-            //        e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
-            //        break;
-            //}
+
+            switch (lives)
+            {
+                case 3:
+                    ///e.Graphics.FillRectangle(whiteBrush, heartBox1);
+                    e.Graphics.DrawImage(Properties.Resources.dirtBlock, heartBox1);
+                    e.Graphics.DrawImage(Properties.Resources.dirtBlock, heartBox2);
+                    e.Graphics.DrawImage(Properties.Resources.dirtBlock, heartBox3);
+                    break;
+                //case 2:
+                //    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
+                //    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox2);
+                //    e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
+                //    break;
+                //case 1:
+                //    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
+                //    e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox2);
+                //    e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
+                //    break;
+            }
         }
     }
 }
