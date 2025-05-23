@@ -30,19 +30,47 @@ namespace BrickBreaker
             Rectangle blockRec = new Rectangle(b.x, b.y, b.width, b.height);
             Rectangle ballRec = new Rectangle(x, y, size, size);
 
+            bool verticalCollision = false, horizontalCollision = false;
+
             if (ballRec.IntersectsWith(blockRec))
             {
-                ySpeed *= -1;
-
-                if (y < b.y + b.height) //if ballY (top of ball) is more than blockY + blockHeight (bottom of block)
+                if (y + size > b.y) // ball hits bottom of block
                 {
-                    xSpeed *= -1; //switch x direction (left and right)
-                    //x = b.x + b.width; // move ball to right side
+                    ySpeed *= -1;
+                    y = y + 2;   // slightly bigger push
+                    verticalCollision = true;
+            }
+                else if (y < b.y + b.height) // ball hits top of block
+                {
+                    ySpeed *= -1;
+                    y = y - 2;
+                    horizontalCollision = true;
+                }
+
+                if (x + size > b.x && x < b.x) // ball hits left side
+                {
+                    xSpeed *= -1;
+                    if (!verticalCollision)
+                    {
+                        x = x - 2;
+                    }
+                horizontalCollision = true;
+                }
+                else if (x + size > b.x + b.width && x < b.x + b.width) // ball hits right side
+                {
+                    xSpeed *= -1;
+                if (!verticalCollision)
+                {
+                
+                    x = x + 2;
+                }
+                horizontalCollision = true;
                 }
             }
 
             return blockRec.IntersectsWith(ballRec);
         }
+
 
         public bool LuckCollision(Paddle p)
         {
@@ -74,12 +102,21 @@ namespace BrickBreaker
                 if (ballCentre < p.x + pSectionWidth) //hit left side
                 {
                     xSpeed = 4;
-                    xSpeed *= -1;
+
+                    if (lastX > x)
+                    {
+                        xSpeed *= -1;
+                    }
+                    
                 }
                 else if (ballCentre > p.x + pSectionWidth * 2) //hit right side
                 {
                     xSpeed = 4;
-                    xSpeed *= -1;
+
+                    if (lastX > x)
+                    {
+                        xSpeed *= -1;
+                    }
                 }
                 else //middle
                 {
