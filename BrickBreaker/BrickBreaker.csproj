@@ -138,12 +138,13 @@
   <ItemGroup>
     <Content Include="level1.xml" />
     <Content Include="level2.xml" />
-    <None Include="Resources\heartIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\emptyHeartIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Resources\MINEBRICK.png" />
+    <None Include="Resources\BlockBreaking.wav" />
+    <None Include="Resources\emptyHeartIcon.png" />
+    <None Include="Resources\heartIcon.png" />
+    <None Include="Resources\Minecraft-Logo.png" />
+    <None Include="Resources\BackgroundScaled.jpg" />
+    <None Include="Resources\Background.jpg" />
     <Content Include="level3.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

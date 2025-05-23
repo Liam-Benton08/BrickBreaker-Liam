@@ -63,6 +63,25 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BackgroundScaled {
+            get {
+                object obj = ResourceManager.GetObject("BackgroundScaled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream BlockBreaking {
+            get {
+                return ResourceManager.GetStream("BlockBreaking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap emptyHeartIcon {
             get {
                 object obj = ResourceManager.GetObject("emptyHeartIcon", resourceCulture);
@@ -76,6 +95,16 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap heartIcon {
             get {
                 object obj = ResourceManager.GetObject("heartIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Minebrick {
+            get {
+                object obj = ResourceManager.GetObject("Minebrick", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
