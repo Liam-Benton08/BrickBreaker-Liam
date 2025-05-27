@@ -30,42 +30,38 @@ namespace BrickBreaker
             Rectangle blockRec = new Rectangle(b.x, b.y, b.width, b.height);
             Rectangle ballRec = new Rectangle(x, y, size, size);
 
-            bool verticalCollision = false, horizontalCollision = false;
+            bool verticalCollision = false;
 
             if (ballRec.IntersectsWith(blockRec))
             {
-                if (y + size > b.y) // ball hits bottom of block
+                if (y + size > b.y && y < b.y && ySpeed > 0) //hits top of block
                 {
                     ySpeed *= -1;
-                    y = y + 2;   // slightly bigger push
+                    y = y = y - 2;
                     verticalCollision = true;
             }
-                else if (y < b.y + b.height) // ball hits top of block
+                else if (y < b.y + b.height && y + size > b.y + b.height && ySpeed < 0) // ball hits bottom of block
                 {
                     ySpeed *= -1;
-                    y = y - 2;
-                    horizontalCollision = true;
+                    y = y + 2;
+                    verticalCollision = true;
                 }
-
-                if (x + size > b.x && x < b.x) // ball hits left side
-                {
-                    xSpeed *= -1;
-                    if (!verticalCollision)
-                    {
-                        x = x - 2;
-                    }
-                horizontalCollision = true;
-                }
-                else if (x + size > b.x + b.width && x < b.x + b.width) // ball hits right side
-                {
-                    xSpeed *= -1;
+                
                 if (!verticalCollision)
                 {
+                    if (x + size > b.x && x < b.x && xSpeed > 0) // ball hits left side
+                    {
+                        xSpeed *= -1;
+                        x = x - 2;
+                                            }
+                    else if (x < b.x + b.width && x + size > b.x + b.width && xSpeed < 0) // ball hits right side
+                    {
+                        xSpeed *= -1;
+                        x = x + 2;
+                    }
+
+                }
                 
-                    x = x + 2;
-                }
-                horizontalCollision = true;
-                }
             }
 
             return blockRec.IntersectsWith(ballRec);

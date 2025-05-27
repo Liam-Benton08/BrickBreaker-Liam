@@ -8,6 +8,7 @@ namespace BrickBreaker
 {
     internal class Powerups
     {
+
         public static int poweractivate, damage;
         // btfootb = beat the fuck out of those blocks
         public static bool btfootb;
