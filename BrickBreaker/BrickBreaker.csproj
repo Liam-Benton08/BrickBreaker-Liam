@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\MINEBRICK.png" />
     <None Include="Resources\stoneBlock-1.png %284%29.png" />
     <None Include="Resources\stoneBlock-1.png %283%29.png" />
     <None Include="Resources\stoneBlock-1.png %282%29.png" />
@@ -148,6 +149,9 @@
     <None Include="Resources\dirtBlock.png" />
     <None Include="Resources\ironBlock.jpg" />
     <None Include="Resources\diamondBlock.jpg" />
+    <None Include="Resources\BackgroundScaled.jpg" />
+    <None Include="Resources\heartIcon.png" />
+    <None Include="Resources\emptyHeartIcon.png" />
     <Content Include="Resources\level6.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -165,12 +169,6 @@
     <Content Include="Resources\level2.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\heartIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\emptyHeartIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="Resources\level3.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

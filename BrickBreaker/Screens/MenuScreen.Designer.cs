@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.playButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
+            this.menuTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // playButton
@@ -62,6 +64,12 @@
             this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // menuTimer
+            // 
+            this.menuTimer.Enabled = true;
+            this.menuTimer.Interval = 1;
+            this.menuTimer.Tick += new System.EventHandler(this.menuTimer_Tick);
+            // 
             // MenuScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -69,8 +77,10 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.playButton);
+            this.DoubleBuffered = true;
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(855, 855);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MenuScreen_Paint);
             this.ResumeLayout(false);
 
         }
@@ -79,5 +89,6 @@
 
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Timer menuTimer;
     }
 }

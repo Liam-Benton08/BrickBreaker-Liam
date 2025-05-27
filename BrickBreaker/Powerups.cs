@@ -53,11 +53,8 @@ namespace BrickBreaker
         // Adds one more ball to the field
         public static void Slime()
         {
-            //foreach (Ball ball in extraballs)
-            //{
-            //    Ball eb = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
-            //    extraballs.Add(eb);
-            //}
+            Ball eb = new Ball(GameScreen.slimex, GameScreen.slimey, -6, -6, 20);
+            extraballs.Add(eb);
         }
         // Upgrades to stone tool, does 1 extra damage
         public static void stonetool()
