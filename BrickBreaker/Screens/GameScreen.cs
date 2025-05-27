@@ -26,8 +26,7 @@ namespace BrickBreaker
 
         // Game values
         Random Randgen = new Random();
-        public static int lives;
-        public static int SlimeNum;
+        public static int lives, slimex, slimey;
         int count;
         int powerupchance;
         int poweruptype;
@@ -49,9 +48,9 @@ namespace BrickBreaker
         SolidBrush redBrush = new SolidBrush(Color.Red);
 
 
-        public Rectangle heartBox1 = new Rectangle(0, 575, 50, 50);
-        public Rectangle heartBox2 = new Rectangle(0, 650, 50, 50);
-        public Rectangle heartBox3 = new Rectangle(0, 725, 50, 50);
+        Rectangle heartBox1 = new Rectangle(0, 575, 50, 50);
+        Rectangle heartBox2 = new Rectangle(0, 650, 50, 50);
+        Rectangle heartBox3 = new Rectangle(0, 725, 50, 50);
 
         Image background;
 
@@ -259,7 +258,7 @@ namespace BrickBreaker
 
                 if (pub.LuckCollision(paddle))
                 {
-                    int powerupselect = Randgen.Next(1, 11);
+                    int powerupselect = Randgen.Next(6, 7);
 
                     if (powerupselect == 1)
                     {
@@ -283,6 +282,9 @@ namespace BrickBreaker
                     }
                     else if (powerupselect == 6)
                     {
+                        slimex = pub.x;
+                        slimey = pub.y;
+
                         Powerups.Slime();
                     }
                     else if (powerupselect == 7)
@@ -303,6 +305,36 @@ namespace BrickBreaker
                     }
 
                     powerupballs.Remove(pub);
+                    break;
+                }
+            }
+
+            foreach (Ball eb in Powerups.extraballs)
+            {
+                eb.Move();
+
+                eb.WallCollision(this);
+
+                eb.PaddleCollision(paddle);
+
+                foreach (Block b in blocks)
+                {
+                    if (eb.BlockCollision(b))
+                    {
+                        b.hp--;
+                        Block.BlockBreaking(b);
+
+                        if (b.hp == 0)
+                        {
+                            blocks.Remove(b);
+                            break;
+                        }
+                    }
+                }
+
+                if (eb.BottomCollision(this))
+                {
+                    Powerups.extraballs.Remove(eb);
                     break;
                 }
             }
@@ -412,20 +444,20 @@ namespace BrickBreaker
             {
                 case 3:
                     ///e.Graphics.FillRectangle(whiteBrush, heartBox1);
-                    e.Graphics.DrawImage(Properties.Resources.dirtBlock, heartBox1);
-                    e.Graphics.DrawImage(Properties.Resources.dirtBlock, heartBox2);
-                    e.Graphics.DrawImage(Properties.Resources.dirtBlock, heartBox3);
+                    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
+                    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox2);
+                    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox3);
                     break;
-                //case 2:
-                //    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
-                //    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox2);
-                //    e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
-                //    break;
-                //case 1:
-                //    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
-                //    e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox2);
-                //    e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
-                //    break;
+                case 2:
+                    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
+                    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox2);
+                    e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
+                    break;
+                case 1:
+                    e.Graphics.DrawImage(Properties.Resources.heartIcon, heartBox1);
+                    e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox2);
+                    e.Graphics.DrawImage(Properties.Resources.emptyHeartIcon, heartBox3);
+                    break;
             }
         }
     }
