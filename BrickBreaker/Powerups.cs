@@ -9,7 +9,8 @@ namespace BrickBreaker
     internal class Powerups
     {
 
-        public static int poweractivate, damage;
+        public static int poweractivate, damage = 1;
+
         // btfootb = beat the fuck out of those blocks
         public static bool btfootb;
         // list of extra balls
@@ -37,7 +38,7 @@ namespace BrickBreaker
         // Adds a life to the player
         public static void Golden_Carrot()
         {
-            if (GameScreen.lives > 3)
+            if (GameScreen.lives < 3)
             {
                 GameScreen.lives++;
             }
@@ -45,7 +46,7 @@ namespace BrickBreaker
         // Adds three life to the player
         public static void Golden_Apple()
         {
-            if (GameScreen.lives >= 3)
+            if (GameScreen.lives <= 3)
             {
                 GameScreen.lives = 4;
             }

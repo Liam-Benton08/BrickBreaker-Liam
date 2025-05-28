@@ -19,6 +19,7 @@ namespace BrickBreaker
         public int hp;
         public int fullHp;
         public string bType;
+        public static int dragonHp;
 
         public Image blockImage;
         public Image durabilityImage = Properties.Resources.noBreak;
@@ -33,6 +34,7 @@ namespace BrickBreaker
             fullHp = _hp;
             bType = _bType;
 
+            //Takes whatever blocktype xml file gives and gives the right image
             if (_bType == "Dirt")
             {
                 blockImage = Properties.Resources.dirtBlock;
@@ -68,27 +70,34 @@ namespace BrickBreaker
             else if (_bType == "Dragon")
             {
                 blockImage = Properties.Resources.dragonBlock;
+                dragonHp = hp;
             }
         }
 
         public static void BlockBreaking(Block b)
         {
-                if (b.hp <= b.fullHp / 4)
-                {
-                    b.durabilityImage = Properties.Resources.threeQuartersBreak;
-                }
-                else if(b.hp <= b.fullHp / 2)
-                {
-                    b.durabilityImage = Properties.Resources.halfBreak;
-                }
-                else if (b.hp <= b.fullHp * 3 / 4)
-                {
-                    b.durabilityImage = Properties.Resources.oneQuartersBreak;
-                }
-                else if (b.hp == b.fullHp)
-                {
-                    b.durabilityImage = Properties.Resources.noBreak;
-                }
+            //Depending on health, it will show breaking images
+            if (b.hp <= b.fullHp / 4)
+            {
+                b.durabilityImage = Properties.Resources.threeQuartersBreak;
+            }
+            else if (b.hp <= b.fullHp / 2)
+            {
+                b.durabilityImage = Properties.Resources.halfBreak;
+            }
+            else if (b.hp <= b.fullHp * 3 / 4)
+            {
+                b.durabilityImage = Properties.Resources.oneQuartersBreak;
+            }
+            else if (b.hp == b.fullHp)
+            {
+                b.durabilityImage = Properties.Resources.noBreak;
+            }
+
+            if (b.bType == "Dragon")
+            {
+                dragonHp = b.hp;
+            }
         }
     }
 

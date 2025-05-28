@@ -136,6 +136,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\slime-fotor-202505272202-removebg-preview.png" />
+    <None Include="Resources\preScaledBackground2-fotor-2025052721258.png" />
+    <None Include="Resources\preScaledBackground1Real-fotor-20250527205911.png" />
+    <None Include="Resources\preScaledBackground1-fotor-20250527204142.png" />
+    <None Include="Resources\rsz_backgroundlevel_1-1.png.png" />
     <None Include="Resources\MINEBRICK.png" />
     <None Include="Resources\stoneBlock-1.png %284%29.png" />
     <None Include="Resources\stoneBlock-1.png %283%29.png" />
@@ -152,6 +157,16 @@
     <None Include="Resources\BackgroundScaled.jpg" />
     <None Include="Resources\heartIcon.png" />
     <None Include="Resources\emptyHeartIcon.png" />
+    <None Include="Resources\backgroundLevel3-fotor-20250527211014.png" />
+    <None Include="Resources\backgroundLevel4-fotor-20250527211136.png" />
+    <None Include="Resources\backgroundLevel 5-fotor-20250527211333.png" />
+    <None Include="Resources\backgroundLevel 6-fotor-20250527211444.png" />
+    <None Include="Resources\goldenHeartIcon-fotor-20250527213553-removebg-preview.png" />
+    <None Include="Resources\image-fotor-20250527221049.png" />
+    <None Include="Resources\image-fotor-20250527221253-removebg-preview.png" />
+    <None Include="Resources\blah-removebg-preview-fotor-2025052722193.png" />
+    <None Include="Resources\bruh-removebg-preview-fotor-20250527222226.png" />
+    <None Include="Resources\ha-removebg-preview-fotor-20250527222356.png" />
     <Content Include="Resources\level6.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

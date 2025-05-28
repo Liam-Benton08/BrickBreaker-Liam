@@ -32,8 +32,8 @@
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dragonHpProgressBar = new System.Windows.Forms.ProgressBar();
+            this.powerUpLabel = new System.Windows.Forms.Label();
+            this.dragonBarLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -51,33 +51,36 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
-            // label2
+            // powerUpLabel
             // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(722, 436);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 34);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Skip";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.powerUpLabel.BackColor = System.Drawing.Color.Transparent;
+            this.powerUpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.powerUpLabel.ForeColor = System.Drawing.Color.White;
+            this.powerUpLabel.Location = new System.Drawing.Point(3, 774);
+            this.powerUpLabel.Name = "powerUpLabel";
+            this.powerUpLabel.Size = new System.Drawing.Size(383, 34);
+            this.powerUpLabel.TabIndex = 3;
             // 
-            // dragonHpProgressBar
+            // dragonBarLabel
             // 
-            this.dragonHpProgressBar.BackColor = System.Drawing.Color.White;
-            this.dragonHpProgressBar.Location = new System.Drawing.Point(234, 0);
-            this.dragonHpProgressBar.Name = "dragonHpProgressBar";
-            this.dragonHpProgressBar.Size = new System.Drawing.Size(324, 23);
-            this.dragonHpProgressBar.TabIndex = 3;
-            this.dragonHpProgressBar.Visible = false;
+            this.dragonBarLabel.BackColor = System.Drawing.Color.Transparent;
+            this.dragonBarLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dragonBarLabel.ForeColor = System.Drawing.Color.White;
+            this.dragonBarLabel.Location = new System.Drawing.Point(14, 0);
+            this.dragonBarLabel.Name = "dragonBarLabel";
+            this.dragonBarLabel.Size = new System.Drawing.Size(300, 34);
+            this.dragonBarLabel.TabIndex = 4;
+            this.dragonBarLabel.Text = "Dragon Health";
+            this.dragonBarLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dragonBarLabel.Visible = false;
             // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Controls.Add(this.dragonHpProgressBar);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dragonBarLabel);
+            this.Controls.Add(this.powerUpLabel);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
             this.Name = "GameScreen";
@@ -95,7 +98,7 @@
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ProgressBar dragonHpProgressBar;
+        private System.Windows.Forms.Label powerUpLabel;
+        private System.Windows.Forms.Label dragonBarLabel;
     }
 }

@@ -54,7 +54,7 @@ namespace BrickBreaker
                         xSpeed *= -1;
                         x = x - 2;
                                             }
-                    else if (x < b.x + b.width && x + size > b.x + b.width && xSpeed < 0) // ball hits right side
+                    else if (x < b.x + b.width && x + size> b.x + b.width && xSpeed < 0) // ball hits right side
                     {
                         xSpeed *= -1;
                         x = x + 2;
@@ -181,7 +181,7 @@ namespace BrickBreaker
 
             Boolean pushedOut = false;
 
-            if (x >= UC.Width || x < 0 - size)
+            if (x >= UC.Width - 25 || x < 0 - 5)
             {
                 pushedOut = true;
 
